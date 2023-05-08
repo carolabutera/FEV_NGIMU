@@ -40,6 +40,7 @@ How to make the IMUs send messages:
 * open NGIMU GUI  software 
 * connect an IMU
 * go to Settings-> Send Rates-> set the desired frequency for Sensor, Rotation Matrix and Linear Acceleration 
+* go to Send Command-> Write to device
 
 
 
