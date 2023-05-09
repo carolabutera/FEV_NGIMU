@@ -1,5 +1,9 @@
 #!/usr/bin/python3
 
+
+## NB: MAGNETOMETER IS SET TO OFF
+##IMUs NEED TO BE ALIGNED WITH EACH OTHER WHEN ARE SWITCHED ON SO THAT THEY SHARE THE SAME GROUND REFERENCE FRAME 
+
 import osc_decoder
 import socket
 import time
@@ -18,12 +22,10 @@ import keyboard
 import os  
 import calibration 
 import PySimpleGUI as sg
-import csv_util 
-# cambiare assi di convezione isb
-#salvare file csv con solo angoli e matrici di rotazione 
 
 
-#DATA ARE ACQUIRED @50HZ--> first tried with 100Hz but some data were lost
+
+#DATA ARE ACQUIRED @50HZ --> is pos
 
 sg.theme("LightGreen2")
 
@@ -80,11 +82,8 @@ for send_address in send_addresses:
     # Make the led blink
     IMU_client.send_message("/identify", 0.0)
     IMU_client.send_message("/wifi/send/ip", IPAddr) #IP address of the beaglebone (changed with IP address of the computer)
-    # if ignore_magnetometer==1:
-    #     #IMU_client.send_message("/reset", True)
-    #     IMU_client.send_message("/ahrs/magnetometer", False)
-    # else: 
-    #     IMU_client.send_message("/ahrs/magnetometer", False)
+    IMU_client.send_message("/ahrs/magnetometer", True) # to ignore magnetometer and use only acc and gyro data to get IMU orientation 
+    IMU_client.send_message("/rate/matrix", 50)
         
     if send_address == send_addresses[0]:
         print("Put this IMU on the trunk")
