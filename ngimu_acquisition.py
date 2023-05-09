@@ -62,9 +62,9 @@ for name, interface in ifcfg.interfaces().items():
         print("You are connected to the network. IP Address: ", IPAddr)         
 
 
-send_addresses = ["192.168.0.100","192.168.0.101","192.168.0.102"]#,"192.168.0.103","192.168.0.104"] #remove comment when using 5 IMUs 
+send_addresses = ["192.168.0.100","192.168.0.101","192.168.0.102","192.168.0.103","192.168.0.104"] #remove comment when using 5 IMUs 
 send_port = 9000
-receive_ports = [8100, 8101, 8102]#, 8103, 8104] #remove comment when using 5 IMUs
+receive_ports = [8100, 8101, 8102, 8103, 8104] #remove comment when using 5 IMUs
     
 
 print("Opening UDP socket...")
@@ -165,7 +165,7 @@ while True:
                         if udp_socket.getsockname()[1] == receive_ports[0]:
                             TO_g=np.matrix([[Rxx,Ryx,Rzx],[Rxy ,Ryy, Rzy],[Rxz ,Ryz ,Rzz]])                  
                         elif udp_socket.getsockname()[1] == receive_ports[1]:       
-                           UA_R_g=np.matrix([[Rxx,Ryx,Rzx],[Rxy ,Ryy, Rzy],[Rxz ,Ryz ,Rzz]])    
+                            UA_R_g=np.matrix([[Rxx,Ryx,Rzx],[Rxy ,Ryy, Rzy],[Rxz ,Ryz ,Rzz]])    
                         elif udp_socket.getsockname()[1] == receive_ports[2]:
                             FA_R_g=np.matrix([[Rxx,Ryx,Rzx],[Rxy ,Ryy, Rzy],[Rxz ,Ryz ,Rzz]])     
                         elif udp_socket.getsockname()[1] == receive_ports[3]:       
@@ -212,10 +212,10 @@ while True:
 
     elif calibration_flag==0: #acquisition of npose data
         
-        if (time.time()-start<15) and (time.time()-start>10): #N-POSE data acquisiton     
+        if (time.time()-start<15) and (time.time()-start>5): #N-POSE data acquisiton     
          
             sum_TO,sum_UA_R,sum_FA_R,sum_UA_L,sum_FA_L,sum_aTO=calibration.mat_sum(TO_g,UA_R_g,FA_R_g,UA_L_g,FA_L_g,a_TO_g,sum_TO,sum_UA_R,sum_FA_R,sum_UA_L,sum_FA_L,sum_aTO)
-            print("acquisition")
+            print("acquisition...")
 
             n=n+1
 
@@ -223,6 +223,7 @@ while True:
 
 
         elif time.time()-start>15: 
+            
             output_n.update(value="DONE!")      
             event,values=window_calibration._ReadNonBlocking()
             calib_type=values[0]
@@ -250,14 +251,15 @@ while True:
 
     elif calibration_flag==1:#acquisition of data during t-pose/walking forward 
         
-        if (time.time()-start<15) and (time.time()-start>10):
+        if (time.time()-start<15) and (time.time()-start>5):
             
             sum_TO,sum_UA_R,sum_FA_R,sum_UA_L,sum_FA_L,sum_aTO=calibration.mat_sum(TO_g,UA_R_g,FA_R_g,UA_L_g,FA_L_g,a_TO_g, sum_TO,sum_UA_R,sum_FA_R,sum_UA_L,sum_FA_L,sum_aTO)
-            print("acquisition")
+            print("acquisition...")
             n=n+1
-            csv_util.writer_calib.writerow([pose,rep_t, time.time(), sum_TO[0,0],sum_TO[0,1],sum_TO[0,2],sum_TO[1,0],sum_TO[1,1],sum_TO[1,2],sum_TO[2,0],sum_TO[2,1],sum_TO[2,2],sum_UA_R[0,0],sum_UA_R[0,1],sum_UA_R[0,2],sum_UA_R[1,0],sum_UA_R[1,1],sum_UA_R[1,2],sum_UA_R[2,0],sum_UA_R[2,1],sum_UA_R[2,2],sum_FA_R[0,0],sum_FA_R[0,1],sum_FA_R[0,2],sum_FA_R[1,0],sum_FA_R[1,1],sum_FA_R[1,2],sum_FA_R[2,0],sum_FA_R[2,1],sum_FA_R[2,2],sum_UA_L[0,0],sum_UA_L[0,1],sum_UA_L[0,2],sum_UA_L[1,0],sum_UA_L[1,1],sum_UA_L[1,2],sum_UA_L[2,0],sum_UA_L[2,1],sum_UA_L[2,2],sum_FA_L[0,0],sum_FA_L[0,1],sum_FA_L[0,2],sum_FA_L[1,0],sum_FA_L[1,1],sum_FA_L[1,2],sum_FA_L[2,0],sum_FA_L[2,1],sum_FA_L[2,2], a_TO_g[0],a_TO_g[1],a_TO_g[2],n])
+            csv_util.writer_calib.writerow([pose,rep_t, time.time(), TO_g[0,0],TO_g[0,1],TO_g[0,2],TO_g[1,0],TO_g[1,1],TO_g[1,2],TO_g[2,0],TO_g[2,1],TO_g[2,2],UA_R_g[0,0],UA_R_g[0,1],UA_R_g[0,2],UA_R_g[1,0],UA_R_g[1,1],UA_R_g[1,2],UA_R_g[2,0],UA_R_g[2,1],UA_R_g[2,2],FA_R_g[0,0],FA_R_g[0,1],FA_R_g[0,2],FA_R_g[1,0],FA_R_g[1,1],FA_R_g[1,2],FA_R_g[2,0],FA_R_g[2,1],FA_R_g[2,2],UA_L_g[0,0],UA_L_g[0,1],UA_L_g[0,2],UA_L_g[1,0],UA_L_g[1,1],UA_L_g[1,2],UA_L_g[2,0],UA_L_g[2,1],UA_L_g[2,2],FA_L_g[0,0],FA_L_g[0,1],FA_L_g[0,2],FA_L_g[1,0],FA_L_g[1,1],FA_L_g[1,2],FA_L_g[2,0],FA_L_g[2,1],FA_L_g[2,2], a_TO_g[0],a_TO_g[1],a_TO_g[2],n])
 
         elif time.time()-start>15:
+            
             output_t.update(value="DONE!")
             event,values=window_calibration._ReadNonBlocking()
                     
@@ -324,12 +326,7 @@ while True:
                     IMU_client = udp_client.SimpleUDPClient(send_address, send_port)
                     IMU_client.send_message("/identify", 0.0)
 
-                start_time=time.time()
-                start_date=datetime.now()
-                csv_util.writer_subj.writerow(['','','','','', exe,str(test_arm),start_date])
-
         if acquisition_flag==0: #exercise  acquisitions
-            s=0
             event,values=window_exercise._ReadNonBlocking()
             
             #sensor data calibration:    
@@ -346,7 +343,7 @@ while True:
             z_TO=np.array([0,0,0])
             z_TO=TO[:,2]
 
-            # PLANE OF ELEVATION-RIGHT ARM
+            ## PLANE OF ELEVATION-RIGHT ARM
             y_onto_x=np.dot(TO[:,0].T, UA_R[:,1], out=None) 
             y_onto_z=np.dot(TO[:,2].T, UA_R[:,1], out=None) 
             
@@ -362,7 +359,7 @@ while True:
 
             POE_R = sign*operations.relative_angle(y_onto_xz, -z_TO.T) #right arm
 
-            # PLANE OF ELEVATION-LEFT
+            ## PLANE OF ELEVATION-LEFT
             y_onto_x=np.dot(TO[:,0].T, UA_L[:,1], out=None) 
             y_onto_z=np.dot(TO[:,2].T, UA_L[:,1], out=None) 
             
@@ -408,11 +405,12 @@ while True:
             UA_corr_x=y_FA_proj_R+(-1)*FA_R[:,1]
             UA_corr_x=UA_corr_x/norm(UA_corr_x)
             UA_corr_z=np.cross(UA_corr_x.T,UA_R[:,1].T)
-
+ 
             for i in range(0,3):
-                UA_corr_R[i,0]=UA_corr_x[0,i]
+                
+                UA_corr_R[i,0]=UA_corr_x[i,0]
                 UA_corr_R[i,1]=UA_R[i,1]
-                UA_corr_R[i,2]=UA_corr_z[i]
+                UA_corr_R[i,2]=UA_corr_z[0,i]
             
             rotHR_corr_R= np.matmul(np.matmul(np.matmul(rotAOE_R.T,rotPOE_R.T),TO.T),UA_corr_R) #shoulder as ZXZ mechanism
             HR_corr_R= math.atan2(rotHR_corr_R[0,2],(rotHR_corr_R[0,0])) 
@@ -428,9 +426,10 @@ while True:
             UA_corr_z=np.cross(UA_corr_x.T,UA_L[:,1].T)
 
             for i in range(0,3):
-                UA_corr_L[i,0]=UA_corr_x[0,i]
+                
+                UA_corr_L[i,0]=UA_corr_x[i,0]
                 UA_corr_L[i,1]=UA_L[i,1]
-                UA_corr_L[i,2]=UA_corr_z[i]
+                UA_corr_L[i,2]=UA_corr_z[0,i]
             
             rotHR_corr_L= np.matmul(np.matmul(np.matmul(rotAOE_L.T,rotPOE_L.T),TO.T),UA_corr_L) #shoulder as ZXZ mechanism
             HR_corr_L = math.atan2(rotHR_corr_L[0,2],(rotHR_corr_L[0,0])) 
@@ -506,6 +505,7 @@ while True:
                 print("FE: ",FE_R*180.0/3.14)              
                 print("PS: ",PS_R*180.0/3.14)
                 print("PS_corr: ",PS_corr_R*180.0/3.14)
+            
 
 
                 if (AOE_R*180/3.14>155)|(AOE_R*180/3.14<25):
@@ -519,7 +519,12 @@ while True:
                 print("FE: ",FE_L*180.0/3.14)              
                 print("PS: ",PS_L*180.0/3.14)
                 print("PS_corr: ",PS_corr_L*180.0/3.14)
-                print("TO",TO)
+
+                print(UA_L)
+                print(UA_L_g)
+                print(FA_L)
+                print(FA_L_g)
+                
 
 
                 if (AOE_L*180/3.14>155)|(AOE_L*180/3.14<25):
