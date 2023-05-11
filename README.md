@@ -44,8 +44,6 @@ How to make the IMUs send messages:
 
 
 
-
-
 If IPAddr is not found, probably the device name do not correspond with "wlan0". To check which is the device name run this command: 
 
 ```
@@ -59,3 +57,14 @@ that will output something like:
 cache 
 ```
 in this case, "wlan0" need to be replaced with "wlp2s0" 
+
+
+CALIBRATION PROCEDURE: 
+NPOSE: arms straight along sides with palms facing forward (check if the arm is vertical)
+TPOSE: arms elevated in the frontal plane 
+
+When calibration window is open click "start Npose/Tpose acquisition" when the subject is in the correct position. 
+For each pose the acquisition lasts 15s (first 5s are not actually acquired).
+
+The code provides the possibility to re-acquire Npose and Tpose data if the subject moves during the acquisition.
+NB: Npose reacquisition is possible only if the Tpose has not been done yet. 
