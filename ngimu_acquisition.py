@@ -38,7 +38,7 @@ layout_calibration = [
                 [sg.Text("Subject is in N-POSE?", font=('Arial',12))],
                 [sg.Button('Start N-POSE calibration', font=('Arial',12)),output_n, sg.Button ('Redo N-POSE', font=('Arial',12))],
                 [sg.Text("Calibration type?", font=('Arial',12))],
-                [sg.OptionMenu(["FA_tpose"])],
+                #[sg.OptionMenu(["FA_tpose"])],
                 [sg.Text("Subject is in T-POSE?", font=('Arial',12))],
                 [sg.Button('Start T-POSE calibration', font=('Arial',12)), output_t, sg.Button ('Redo acquisition', font=('Arial',12))],
                 [sg.Button("Calibration ok", font=('Arial',12))],
@@ -219,7 +219,7 @@ while True:
 
             n=n+1
 
-            csv_util.writer_calib.writerow([pose,rep_n, time.time(),TO_g[0,0],TO_g[0,1],TO_g[0,2],TO_g[1,0],TO_g[1,1],TO_g[1,2],TO_g[2,0],TO_g[2,1],TO_g[2,2],
+            csv_util.writer_calib.writerow([pose,rep_n, time_stamp,TO_g[0,0],TO_g[0,1],TO_g[0,2],TO_g[1,0],TO_g[1,1],TO_g[1,2],TO_g[2,0],TO_g[2,1],TO_g[2,2],
                                             UA_R_g[0,0],UA_R_g[0,1],UA_R_g[0,2],UA_R_g[1,0],UA_R_g[1,1],UA_R_g[1,2],UA_R_g[2,0],UA_R_g[2,1],UA_R_g[2,2],
                                             FA_R_g[0,0],FA_R_g[0,1],FA_R_g[0,2],FA_R_g[1,0],FA_R_g[1,1],FA_R_g[1,2],FA_R_g[2,0],FA_R_g[2,1],FA_R_g[2,2],
                                             UA_L_g[0,0],UA_L_g[0,1],UA_L_g[0,2],UA_L_g[1,0],UA_L_g[1,1],UA_L_g[1,2],UA_L_g[2,0],UA_L_g[2,1],UA_L_g[2,2],
@@ -261,7 +261,7 @@ while True:
             sum_TO,sum_UA_R,sum_FA_R,sum_UA_L,sum_FA_L,sum_aTO=calibration.mat_sum(TO_g,UA_R_g,FA_R_g,UA_L_g,FA_L_g,a_TO_g, sum_TO,sum_UA_R,sum_FA_R,sum_UA_L,sum_FA_L,sum_aTO)
             print("acquisition...")
             n=n+1
-            csv_util.writer_calib.writerow([pose,rep_t, time.time(), TO_g[0,0],TO_g[0,1],TO_g[0,2],TO_g[1,0],TO_g[1,1],TO_g[1,2],TO_g[2,0],TO_g[2,1],TO_g[2,2],
+            csv_util.writer_calib.writerow([pose,rep_t, time_stamp, TO_g[0,0],TO_g[0,1],TO_g[0,2],TO_g[1,0],TO_g[1,1],TO_g[1,2],TO_g[2,0],TO_g[2,1],TO_g[2,2],
                                             UA_R_g[0,0],UA_R_g[0,1],UA_R_g[0,2],UA_R_g[1,0],UA_R_g[1,1],UA_R_g[1,2],UA_R_g[2,0],UA_R_g[2,1],UA_R_g[2,2],
                                             FA_R_g[0,0],FA_R_g[0,1],FA_R_g[0,2],FA_R_g[1,0],FA_R_g[1,1],FA_R_g[1,2],FA_R_g[2,0],FA_R_g[2,1],FA_R_g[2,2],
                                             UA_L_g[0,0],UA_L_g[0,1],UA_L_g[0,2],UA_L_g[1,0],UA_L_g[1,1],UA_L_g[1,2],UA_L_g[2,0],UA_L_g[2,1],UA_L_g[2,2],
