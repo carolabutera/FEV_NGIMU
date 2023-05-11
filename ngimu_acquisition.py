@@ -26,7 +26,7 @@ import csv_util
 
 
 
-#DATA ARE ACQUIRED @50HZ --> is pos
+#DATA ARE ACQUIRED @50HZ
 
 sg.theme("LightGreen2")
 
@@ -74,7 +74,7 @@ print("Opening UDP socket...")
 
 
 send_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-IPAddr = "192.168.0.105" #CHECK 
+IPAddr = "192.168.0.105" 
 
 
 for send_address in send_addresses:
@@ -219,7 +219,12 @@ while True:
 
             n=n+1
 
-            csv_util.writer_calib.writerow([pose,rep_n, time.time(),TO_g[0,0],TO_g[0,1],TO_g[0,2],TO_g[1,0],TO_g[1,1],TO_g[1,2],TO_g[2,0],TO_g[2,1],TO_g[2,2],UA_R_g[0,0],UA_R_g[0,1],UA_R_g[0,2],UA_R_g[1,0],UA_R_g[1,1],UA_R_g[1,2],UA_R_g[2,0],UA_R_g[2,1],UA_R_g[2,2],FA_R_g[0,0],FA_R_g[0,1],FA_R_g[0,2],FA_R_g[1,0],FA_R_g[1,1],FA_R_g[1,2],FA_R_g[2,0],FA_R_g[2,1],FA_R_g[2,2],UA_L_g[0,0],UA_L_g[0,1],UA_L_g[0,2],UA_L_g[1,0],UA_L_g[1,1],UA_L_g[1,2],UA_L_g[2,0],UA_L_g[2,1],UA_L_g[2,2],FA_L_g[0,0],FA_L_g[0,1],FA_L_g[0,2],FA_L_g[1,0],FA_L_g[1,1],FA_L_g[1,2],FA_L_g[2,0],FA_L_g[2,1],FA_L_g[2,2],a_TO_g[0],a_TO_g[1],a_TO_g[2],n])
+            csv_util.writer_calib.writerow([pose,rep_n, time.time(),TO_g[0,0],TO_g[0,1],TO_g[0,2],TO_g[1,0],TO_g[1,1],TO_g[1,2],TO_g[2,0],TO_g[2,1],TO_g[2,2],
+                                            UA_R_g[0,0],UA_R_g[0,1],UA_R_g[0,2],UA_R_g[1,0],UA_R_g[1,1],UA_R_g[1,2],UA_R_g[2,0],UA_R_g[2,1],UA_R_g[2,2],
+                                            FA_R_g[0,0],FA_R_g[0,1],FA_R_g[0,2],FA_R_g[1,0],FA_R_g[1,1],FA_R_g[1,2],FA_R_g[2,0],FA_R_g[2,1],FA_R_g[2,2],
+                                            UA_L_g[0,0],UA_L_g[0,1],UA_L_g[0,2],UA_L_g[1,0],UA_L_g[1,1],UA_L_g[1,2],UA_L_g[2,0],UA_L_g[2,1],UA_L_g[2,2],
+                                            FA_L_g[0,0],FA_L_g[0,1],FA_L_g[0,2],FA_L_g[1,0],FA_L_g[1,1],FA_L_g[1,2],FA_L_g[2,0],FA_L_g[2,1],FA_L_g[2,2],
+                                            a_TO_g[0],a_TO_g[1],a_TO_g[2],n])
 
 
         elif time.time()-start>15: 
@@ -256,7 +261,12 @@ while True:
             sum_TO,sum_UA_R,sum_FA_R,sum_UA_L,sum_FA_L,sum_aTO=calibration.mat_sum(TO_g,UA_R_g,FA_R_g,UA_L_g,FA_L_g,a_TO_g, sum_TO,sum_UA_R,sum_FA_R,sum_UA_L,sum_FA_L,sum_aTO)
             print("acquisition...")
             n=n+1
-            csv_util.writer_calib.writerow([pose,rep_t, time.time(), TO_g[0,0],TO_g[0,1],TO_g[0,2],TO_g[1,0],TO_g[1,1],TO_g[1,2],TO_g[2,0],TO_g[2,1],TO_g[2,2],UA_R_g[0,0],UA_R_g[0,1],UA_R_g[0,2],UA_R_g[1,0],UA_R_g[1,1],UA_R_g[1,2],UA_R_g[2,0],UA_R_g[2,1],UA_R_g[2,2],FA_R_g[0,0],FA_R_g[0,1],FA_R_g[0,2],FA_R_g[1,0],FA_R_g[1,1],FA_R_g[1,2],FA_R_g[2,0],FA_R_g[2,1],FA_R_g[2,2],UA_L_g[0,0],UA_L_g[0,1],UA_L_g[0,2],UA_L_g[1,0],UA_L_g[1,1],UA_L_g[1,2],UA_L_g[2,0],UA_L_g[2,1],UA_L_g[2,2],FA_L_g[0,0],FA_L_g[0,1],FA_L_g[0,2],FA_L_g[1,0],FA_L_g[1,1],FA_L_g[1,2],FA_L_g[2,0],FA_L_g[2,1],FA_L_g[2,2], a_TO_g[0],a_TO_g[1],a_TO_g[2],n])
+            csv_util.writer_calib.writerow([pose,rep_t, time.time(), TO_g[0,0],TO_g[0,1],TO_g[0,2],TO_g[1,0],TO_g[1,1],TO_g[1,2],TO_g[2,0],TO_g[2,1],TO_g[2,2],
+                                            UA_R_g[0,0],UA_R_g[0,1],UA_R_g[0,2],UA_R_g[1,0],UA_R_g[1,1],UA_R_g[1,2],UA_R_g[2,0],UA_R_g[2,1],UA_R_g[2,2],
+                                            FA_R_g[0,0],FA_R_g[0,1],FA_R_g[0,2],FA_R_g[1,0],FA_R_g[1,1],FA_R_g[1,2],FA_R_g[2,0],FA_R_g[2,1],FA_R_g[2,2],
+                                            UA_L_g[0,0],UA_L_g[0,1],UA_L_g[0,2],UA_L_g[1,0],UA_L_g[1,1],UA_L_g[1,2],UA_L_g[2,0],UA_L_g[2,1],UA_L_g[2,2],
+                                            FA_L_g[0,0],FA_L_g[0,1],FA_L_g[0,2],FA_L_g[1,0],FA_L_g[1,1],FA_L_g[1,2],FA_L_g[2,0],FA_L_g[2,1],FA_L_g[2,2],
+                                              a_TO_g[0],a_TO_g[1],a_TO_g[2],n])
 
         elif time.time()-start>15:
             
@@ -314,11 +324,22 @@ while True:
                 writer_fileL=csv.writer(file_l,delimiter=',')
                 writer_raw=csv.writer(raw, delimiter=',')
 
-                header_fileR=['time','TOxx', 'TOyx','TOzx','TOxy' ,'TOyy', 'TOzy','TOxz' ,'TOyz' ,'TOzz','UAxx', 'UAyx','UAzx','UAxy' ,'UAyy', 'UAzy','UAxz' ,'UAyz' ,'UAzz','FAxx', 'FAyx','FAzx','FAxy' ,'FAyy', 'FAzy','FAxz' ,'FAyz' ,'FAzz','POE','AOE','HR','FE','PS','HR_corr','PS_corr']
-                header_fileL=['time','TOxx', 'TOyx','TOzx','TOxy' ,'TOyy', 'TOzy','TOxz' ,'TOyz' ,'TOzz','UAxx', 'UAyx','UAzx','UAxy' ,'UAyy', 'UAzy','UAxz' ,'UAyz' ,'UAzz','FAxx', 'FAyx','FAzx','FAxy' ,'FAyy', 'FAzy','FAxz' ,'FAyz' ,'FAzz','POE','AOE','HR','FE','PS','HR_corr','PS_corr']
+                header_fileR=['time','TOxx', 'TOyx','TOzx','TOxy' ,'TOyy', 'TOzy','TOxz' ,'TOyz' ,'TOzz',
+                              'UAxx', 'UAyx','UAzx','UAxy' ,'UAyy', 'UAzy','UAxz' ,'UAyz' ,'UAzz','FAxx', 
+                              'FAyx','FAzx','FAxy' ,'FAyy', 'FAzy','FAxz' ,'FAyz' ,'FAzz','POE','AOE',
+                              'HR','FE','PS','HR_corr','PS_corr']
+                header_fileL=['time','TOxx', 'TOyx','TOzx','TOxy' ,'TOyy', 'TOzy','TOxz' ,'TOyz' ,'TOzz',
+                              'UAxx', 'UAyx','UAzx','UAxy' ,'UAyy', 'UAzy','UAxz' ,'UAyz' ,'UAzz','FAxx', 
+                              'FAyx','FAzx','FAxy' ,'FAyy', 'FAzy','FAxz' ,'FAyz' ,'FAzz','POE','AOE',
+                              'HR','FE','PS','HR_corr','PS_corr']
                 writer_fileR.writerow(header_fileR)
                 writer_fileL.writerow(header_fileL)
-                header_raw=['time','TOxx', 'TOyx','TOzx','TOxy' ,'TOyy', 'TOzy','TOxz' ,'TOyz' ,'TOzz','UAxx_R', 'UAyx_R','UAzx_R','UAxy_R' ,'UAyy_R', 'UAzy_R','UAxz_R' ,'UAyz_R' ,'UAzz_R','FAxx_R', 'FAyx_R','FAzx_R','FAxy_R' ,'FAyy_R', 'FAzy_R','FAxz_R' ,'FAyz_R' ,'FAzz_R','UAxx_L', 'UAyx_L','UAzx_L','UAxy_L' ,'UAyy_L', 'UAzy_L','UAxz_L' ,'UAyz_L' ,'UAzz_L','FAxx_L', 'FAyx_L','FAzx_L','FAxy_L' ,'FAyy_L', 'FAzy_L','FAxz_L' ,'FAyz_L' ,'FAzz_L']
+                header_raw=['time','TOxx', 'TOyx','TOzx','TOxy' ,'TOyy', 'TOzy','TOxz' ,'TOyz' ,'TOzz',
+                            'UAxx_R', 'UAyx_R','UAzx_R','UAxy_R' ,'UAyy_R', 'UAzy_R','UAxz_R' ,'UAyz_R',
+                            'UAzz_R','FAxx_R', 'FAyx_R','FAzx_R','FAxy_R' ,'FAyy_R', 'FAzy_R','FAxz_R',
+                            'FAyz_R' ,'FAzz_R','UAxx_L', 'UAyx_L','UAzx_L','UAxy_L' ,'UAyy_L', 'UAzy_L',
+                            'UAxz_L' ,'UAyz_L' ,'UAzz_L','FAxx_L', 'FAyx_L','FAzx_L','FAxy_L' ,'FAyy_L',
+                              'FAzy_L','FAxz_L' ,'FAyz_L' ,'FAzz_L']
                 writer_raw.writerow(header_raw)
 
                 acquisition_flag=0
@@ -394,7 +415,7 @@ while True:
             HR_R = math.atan2(rotHR_R[0,2],(rotHR_R[0,0])) #arctg (sin/cos) given that HR is a rotation around Y #check
             HR_L = math.atan2(rotHR_L[0,2],(rotHR_L[0,0])) #check
             
-        # HUMERAL ROTATION WITH UA CORRECTION -RIGHT ARM
+        # HUMERAL ROTATION WITH UA CORRECTION-RIGHT ARM
             #correction of the UA rotation matrix according to z-axis of forearm 
 
             yFA_onto_yUA_R=norm(np.dot(UA_R[:,1].T, FA_R[:,1], out=None))
@@ -415,7 +436,7 @@ while True:
             rotHR_corr_R= np.matmul(np.matmul(np.matmul(rotAOE_R.T,rotPOE_R.T),TO.T),UA_corr_R) #shoulder as ZXZ mechanism
             HR_corr_R= math.atan2(rotHR_corr_R[0,2],(rotHR_corr_R[0,0])) 
         
-        #HUMERAL ROTATION WITH CORRECTION -LEFT ARM
+        #HUMERAL ROTATION WITH CORRECTION-LEFT ARM
             yFA_onto_yUA_L=norm(np.dot(UA_L[:,1].T, FA_L[:,1], out=None))
             y_FA_proj_L=yFA_onto_yUA_L*UA_L[:,1]
 
@@ -434,7 +455,7 @@ while True:
             rotHR_corr_L= np.matmul(np.matmul(np.matmul(rotAOE_L.T,rotPOE_L.T),TO.T),UA_corr_L) #shoulder as ZXZ mechanism
             HR_corr_L = math.atan2(rotHR_corr_L[0,2],(rotHR_corr_L[0,0])) 
 
-        # FLEXION EXTENSION -RIGHT
+        # FLEXION EXTENSION-RIGHT
             #FE = operations.relative_angle(FA[:,1].T,UA[:,1.T) #relative angle between y axis
             v=[0,0,0]
 
@@ -471,7 +492,8 @@ while True:
 
             PS_R = math.atan2(rotPS_R[0,2], rotPS_R[0,0]) #pronosupination is a rotation around z axis
             PS_L = math.atan2(rotPS_L[0,2], rotPS_L[0,0]) 
-        # PRONOSUPINATION WITH CORRECTION 
+
+        # PRONOSUPINATION WITH UA CORRECTION 
             rotPS_corr_R= np.matmul(np.matmul(rotFE_R.T,UA_corr_R.T),FA_R) 
             rotPS_corr_L= np.matmul(np.matmul(rotFE_L.T,UA_corr_L.T),FA_L) 
 
@@ -532,15 +554,27 @@ while True:
 
             
             t=time.time()
-            data_R=[time_stamp,TO[0,0],TO[0,1],TO[0,2],TO[1,0],TO[1,1],TO[1,2],TO[2,0],TO[2,1],TO[2,2],UA_R[0,0],UA_R[0,1],UA_R[0,2],UA_R[1,0],UA_R[1,1],UA_R[1,2],UA_R[2,0],UA_R[2,1],UA_R[2,2],FA_R[0,0],FA_R[0,1],FA_R[0,2],FA_R[1,0],FA_R[1,1],FA_R[1,2],FA_R[2,0],FA_R[2,1],FA_R[2,2],POE_R*180.0/3.14,AOE_R*180.0/3.14,HR_R*180.0/3.14,FE_R*180.0/3.14,PS_R*180.0/3.14,HR_corr_R*180.0/3.14, PS_corr_R*180.0/3.14]
-            data_L=[time_stamp,TO[0,0],TO[0,1],TO[0,2],TO[1,0],TO[1,1],TO[1,2],TO[2,0],TO[2,1],TO[2,2],UA_L[0,0],UA_L[0,1],UA_L[0,2],UA_L[1,0],UA_L[1,1],UA_L[1,2],UA_L[2,0],UA_L[2,1],UA_L[2,2],FA_L[0,0],FA_L[0,1],FA_L[0,2],FA_L[1,0],FA_L[1,1],FA_L[1,2],FA_L[2,0],FA_L[2,1],FA_L[2,2],POE_L*180.0/3.14,AOE_L*180.0/3.14,HR_L*180.0/3.14,FE_L*180.0/3.14,PS_L*180.0/3.14,HR_corr_L*180.0/3.14, PS_corr_L*180.0/3.14]
+            data_R=[time_stamp,TO[0,0],TO[0,1],TO[0,2],TO[1,0],TO[1,1],TO[1,2],TO[2,0],TO[2,1],TO[2,2],
+                    UA_R[0,0],UA_R[0,1],UA_R[0,2],UA_R[1,0],UA_R[1,1],UA_R[1,2],UA_R[2,0],UA_R[2,1],UA_R[2,2],
+                    FA_R[0,0],FA_R[0,1],FA_R[0,2],FA_R[1,0],FA_R[1,1],FA_R[1,2],FA_R[2,0],FA_R[2,1],FA_R[2,2],
+                    POE_R*180.0/3.14,AOE_R*180.0/3.14,HR_R*180.0/3.14,FE_R*180.0/3.14,PS_R*180.0/3.14,HR_corr_R*180.0/3.14, PS_corr_R*180.0/3.14]
+            data_L=[time_stamp,TO[0,0],TO[0,1],TO[0,2],TO[1,0],TO[1,1],TO[1,2],TO[2,0],TO[2,1],TO[2,2],
+                    UA_L[0,0],UA_L[0,1],UA_L[0,2],UA_L[1,0],UA_L[1,1],UA_L[1,2],UA_L[2,0],UA_L[2,1],UA_L[2,2],
+                    FA_L[0,0],FA_L[0,1],FA_L[0,2],FA_L[1,0],FA_L[1,1],FA_L[1,2],FA_L[2,0],FA_L[2,1],FA_L[2,2],
+                    POE_L*180.0/3.14,AOE_L*180.0/3.14,HR_L*180.0/3.14,FE_L*180.0/3.14,PS_L*180.0/3.14,HR_corr_L*180.0/3.14, PS_corr_L*180.0/3.14]
             writer_fileR.writerow(data_R) 
             writer_fileL.writerow(data_L)  
 
             timecount = timecount+1
 
 
-            raw_data=[time_stamp,TO_g[0,0],TO_g[0,1],TO_g[0,2],TO_g[1,0],TO_g[1,1],TO_g[1,2],TO_g[2,0],TO_g[2,1],TO_g[2,2],UA_R_g[0,0],UA_R_g[0,1],UA_R_g[0,2],UA_R_g[1,0],UA_R_g[1,1],UA_R_g[1,2],UA_R_g[2,0],UA_R_g[2,1],UA_R_g[2,2],FA_R_g[0,0],FA_R_g[0,1],FA_R_g[0,2],FA_R_g[1,0],FA_R_g[1,1],FA_R_g[1,2],FA_R_g[2,0],FA_R_g[2,1],FA_R_g[2,2],UA_L_g[0,0],UA_L_g[0,1],UA_L_g[0,2],UA_L_g[1,0],UA_L_g[1,1],UA_L_g[1,2],UA_L_g[2,0],UA_L_g[2,1],UA_L_g[2,2],FA_L_g[0,0],FA_L_g[0,1],FA_L_g[0,2],FA_L_g[1,0],FA_L_g[1,1],FA_L_g[1,2],FA_L_g[2,0],FA_L_g[2,1],FA_L_g[2,2],a_TO_g[0],a_TO_g[1],a_TO_g[2],a_UA_R_g[0],a_UA_R_g[1],a_UA_R_g[2],a_FA_R_g[0],a_FA_R_g[1],a_FA_R_g[2],a_UA_L_g[0],a_UA_L_g[1],a_UA_L_g[2],a_FA_L_g[0],a_FA_L_g[1],a_FA_L_g[2]]
+            raw_data=[time_stamp,TO_g[0,0],TO_g[0,1],TO_g[0,2],TO_g[1,0],TO_g[1,1],TO_g[1,2],TO_g[2,0],TO_g[2,1],TO_g[2,2],
+                      UA_R_g[0,0],UA_R_g[0,1],UA_R_g[0,2],UA_R_g[1,0],UA_R_g[1,1],UA_R_g[1,2],UA_R_g[2,0],UA_R_g[2,1],UA_R_g[2,2],
+                      FA_R_g[0,0],FA_R_g[0,1],FA_R_g[0,2],FA_R_g[1,0],FA_R_g[1,1],FA_R_g[1,2],FA_R_g[2,0],FA_R_g[2,1],FA_R_g[2,2],
+                      UA_L_g[0,0],UA_L_g[0,1],UA_L_g[0,2],UA_L_g[1,0],UA_L_g[1,1],UA_L_g[1,2],UA_L_g[2,0],UA_L_g[2,1],UA_L_g[2,2],
+                      FA_L_g[0,0],FA_L_g[0,1],FA_L_g[0,2],FA_L_g[1,0],FA_L_g[1,1],FA_L_g[1,2],FA_L_g[2,0],FA_L_g[2,1],FA_L_g[2,2],
+                      a_TO_g[0],a_TO_g[1],a_TO_g[2],a_UA_R_g[0],a_UA_R_g[1],a_UA_R_g[2],a_FA_R_g[0],a_FA_R_g[1],a_FA_R_g[2],
+                      a_UA_L_g[0],a_UA_L_g[1],a_UA_L_g[2],a_FA_L_g[0],a_FA_L_g[1],a_FA_L_g[2]]
             writer_raw.writerow(raw_data) 
 
             if event=="Stop Acquisition":          
