@@ -38,7 +38,7 @@ layout_calibration = [
                 [sg.Text("Subject is in N-POSE?", font=('Arial',12))],
                 [sg.Button('Start N-POSE calibration', font=('Arial',12)),output_n, sg.Button ('Redo N-POSE', font=('Arial',12))],
                 [sg.Text("Calibration type?", font=('Arial',12))],
-                [sg.OptionMenu(["UA_tpose", "FA_tpose","ACCELERATION"])],
+                [sg.OptionMenu(["FA_tpose"])],
                 [sg.Text("Subject is in T-POSE?", font=('Arial',12))],
                 [sg.Button('Start T-POSE calibration', font=('Arial',12)), output_t, sg.Button ('Redo acquisition', font=('Arial',12))],
                 [sg.Button("Calibration ok", font=('Arial',12))],
@@ -345,7 +345,7 @@ while True:
                 acquisition_flag=0
                 for send_address in send_addresses: 
                     IMU_client = udp_client.SimpleUDPClient(send_address, send_port)
-                    IMU_client.send_message("/identify", 0.0)
+                    #IMU_client.send_message("/identify", 0.0)
 
         if acquisition_flag==0: #exercise  acquisitions
             event,values=window_exercise._ReadNonBlocking()
@@ -542,11 +542,7 @@ while True:
                 print("PS: ",PS_L*180.0/3.14)
                 print("PS_corr: ",PS_corr_L*180.0/3.14)
 
-                print(UA_L)
-                print(UA_L_g)
-                print(FA_L)
-                print(FA_L_g)
-                
+
 
 
                 if (AOE_L*180/3.14>155)|(AOE_L*180/3.14<25):
@@ -579,7 +575,7 @@ while True:
 
             if event=="Stop Acquisition":          
                 IMU_torso=udp_client.SimpleUDPClient(send_addresses[0], send_port)
-                IMU_torso.send_message("/identify", 0.0)           
+                #IMU_torso.send_message("/identify", 0.0)           
                 output_e.update("Acquisition stopped")
                 acquisition_flag=-1
                 print("Data have been saved")
